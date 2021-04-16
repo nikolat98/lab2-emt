@@ -1,0 +1,9 @@
+nav {
+  height: 50px;
+  border: 1px solid #ffff;
+}
+
+.nav__links {
+  display: flex;
+  flex-direction: row;
+}
