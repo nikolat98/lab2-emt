@@ -11,7 +11,7 @@ function bookList(props) {
                         <tr>
                             <th scope={"col"}>Name</th>
                             <th scope={"col"}>Category</th>
-                            <th scope={"col"}>Quantity</th>
+                            <th scope={"col"}>Available</th>
                             <th scope={"col"}>Author</th>
                         </tr>
                         </thead>
@@ -41,7 +41,7 @@ function bookList(props) {
                 <div className="col mb-3">
                     <div className="row">
                         <div className="col-sm-12 col-md-12">
-                            <Link className={"btn btn-block btn-dark"} to={"/books/add"}>Add new book</Link>
+                            <Link className={"btn btn-lg btn-dark"} to={"/books/add"}>Add new book</Link>
                         </div>
                     </div>
                 </div>

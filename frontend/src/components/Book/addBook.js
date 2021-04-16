@@ -1,36 +1,51 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 
 const AddBook = (props) => {
 
     const history = useHistory();
-    const [formData, updateFormData] = React.useState({
+    /*
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        fetch('/api/data')
+          .then((res) => res.json())
+          .then((data) => {
+            setData(data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }, []);
+      */
+    const [books, updateBooks] = React.useState({
         name: "",
-        author: "",
-        availableCopies: 0,
-        category: 0
+        author: 1,
+        category: 0,
+        availableCopies: 0
     })
 
     const handleChange = (e) => {
-        updateFormData({
-            ...formData,
+        updateBooks({
+            ...books,
             [e.target.name]: e.target.value.trim()
         })
+        console.log(books)
     }
 
     const onFormSubmit = (e) => {
         e.preventDefault();
-        const name = formData.name;
-        const author = formData.author;
-        const availableCopies = formData.availableCopies;
-        const category = formData.category;
+        const name = books.name;
+        const author = books.author;
+        const availableCopies = books.availableCopies;
+        const category = books.category;
 
-        props.onAddProduct(name, author, availableCopies, category);
+        props.onAddBook(name, author, availableCopies, category);
         //routing
         history.push("/books");
     }
 
-    return(
+    return (
         <div className="row mt-5">
             <div className="col-md-5">
                 <form onSubmit={onFormSubmit}>
@@ -46,23 +61,11 @@ const AddBook = (props) => {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="author">Author</label>
-                        <input type="text"
-                               className="form-control"
-                               id="author"
-                               name="author"
-                               placeholder="Author"
-                               required
-                               onChange={handleChange}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="availableCopies">Available</label>
-                        <input type="text"
+                        <label htmlFor="availableCopies">Available copies</label>
+                        <input type="number"
                                className="form-control"
                                id="availableCopies"
                                name="availableCopies"
-                               placeholder="Available"
                                required
                                onChange={handleChange}
                         />
@@ -70,16 +73,16 @@ const AddBook = (props) => {
                     <div className="form-group">
                         <label>Category</label>
                         <select name="category" className="form-control" onChange={handleChange}>
-                            {props.categories.map((term) =>
-                                <option value={term.id}>{term.name}</option>
+                            {props.categories.map((category) =>
+                                <option value={props.categories.indexOf(category)}>{category}</option>
                             )}
                         </select>
                     </div>
                     <div className="form-group">
-                        <label>Manufacturer</label>
-                        <select name="manufacturer" className="form-control" onChange={handleChange}>
-                            {props.manufacturers.map((term) =>
-                                <option value={term.id}>{term.name}</option>
+                        <label>Author</label>
+                        <select name="author" className="form-control" onChange={handleChange}>
+                            {props.authors.map((author) =>
+                                <option value={author.id}>{author.name + " " + author.surname}</option>
                             )}
                         </select>
                     </div>

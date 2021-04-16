@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Redirect, Route} from "react-router-dom"
 import Books from "./Book/bookList"
 import AddBook from "./Book/addBook"
 import EditBook from "./Book/editBook"
-import Header from "./Headers/Header"
+import Header from "./Headers/header"
 import ShopService from "../repo/ShopRepository"
 
 class App extends Component {
@@ -23,7 +23,7 @@ class App extends Component {
           <Header/>
           <main>
             <div className="container">
-                <Route path={"/books/add"} exact render={() => <AddBook authors = {this.state.authors} onAddBook = {this.addNewBook}/>}/>
+                <Route path={"/books/add"} exact render={() => <AddBook authors = {this.state.authors} onAddBook = {this.addBook}/>}/>
                 <Route path={"/books/edit/:id"} exact render={() => <EditBook authors = {this.state.authors} onEditBook = {this.editBook} book = {this.state.selectedBook}/>} />
                 <Route path={"/books"} exact render={() => <Books books={this.state.books} onDelete = {this.deleteBook} markTaken = {this.markAsTaken} onSelected = {this.getBook} />}/>
                 <Redirect to={"/books"}/>

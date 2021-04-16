@@ -1,15 +1,24 @@
 import React from 'react'
-import {NavLink, Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Header = (props) => {
     return (
-        <nav>
-            <div className="nav__links">
-                <NavLink to="/categories">Categories</NavLink>
-                <NavLink to="/books">Books</NavLink>
-                
+        <header>
+            <nav className="navbar navbar-expand-md navbar-dark navbar-fixed">
+
+            <div className="collapse navbar-collapse" id="navbarCollapse">
+                <ul className="navbar-nav mr-auto">
+                    <li className="nav-item active">
+                        <Link className="nav-link" to={"/books"}>Books</Link>
+                    </li>
+                    <li className="nav-item active">
+                        <Link className="nav-link" to={"/categories"}>Categories</Link>
+                    </li>
+                </ul>
             </div>
-        </nav>
+
+            </nav>
+        </header>
     )
 }
 
